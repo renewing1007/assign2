@@ -1,4 +1,4 @@
-                          /* please implement your assign1 code in this file. */
+                           /* please implement your assign1 code in this file. */
   PImage fighterImg;
   PImage treasureImg;
   PImage hpImg;
@@ -7,6 +7,14 @@
   PImage bg2Img;
   PImage bg3Img;
   PImage bg4Img;
+  PImage end1Img;
+  PImage end2Img;
+  PImage start1Img;
+  PImage start2Img;
+  final int GAME_START=0;
+  final int GAME_RUN=1;
+  final int GAME_OVER=2;
+  int gamestate = GAME_START;
   boolean upPressed=false;
   boolean downPressed=false;
   boolean leftPressed=false;
@@ -26,6 +34,10 @@ void setup () {
  bg2Img=loadImage("img/bg2.png");//bg2
  bg3Img=loadImage("img/bg1.png");//bg1
  bg4Img=loadImage("img/bg2.png");//bg2
+ end1Img=loadImage("img/end1.png");
+ end2Img=loadImage("img/end2.png");
+ start1Img=loadImage("img/start1.png");
+ start2Img=loadImage("img/start2.png");
  treasure_x=floor(random(600));
  treasure_y=floor(random(34,440));
  //treasure_x=176;
@@ -51,6 +63,29 @@ void setup () {
 
 void draw() {
   // your code
+  switch(gamestate){
+  case GAME_START:
+  hp_x=38;
+  background(0);
+  image(start1Img,0,0);
+  if(mouseY>375 && mouseY<420){
+    if(mouseX>200 && mouseX<450){
+    background(0);
+  image(start2Img,0,0);
+  if(mousePressed){
+  gamestate=1;
+  }
+  }else{
+  background(0);
+  image(start1Img,0,0);
+  }
+    }
+  
+  
+  break;
+  
+  case 1:
+  
   background(0);
   image(bg1Img,x2,0);
 
@@ -100,8 +135,11 @@ void draw() {
   
    //if the fighter gets the treasure
   if(treasure_x-40 <= fighterx1 && fighterx1 <= treasure_x+40 ){
-     if(treasure_y-50 <= fightery1 && treasure_y <= enemy_y+40){
+     if(treasure_y-50 <= fightery1 && fightery1 <= treasure_y+40){
      hp_x+=19;
+     if(hp_x>190){
+     hp_x=190;
+     }
      treasure_x=floor(random(600));
      treasure_y=floor(random(34,440));
    } 
@@ -115,15 +153,6 @@ void draw() {
      enemy_y=floor(random(35,420));
    } 
    }
-
- 
-   
-    
-  
-
-  
-  
-  
   //hp
   fill(#FF0000);
   rect(13,5,hp_x,15);
@@ -133,8 +162,48 @@ void draw() {
   //enemy
   image(enemyImg,enemy_x,enemy_y);
   enemy_x+=1;
-  enemy_x%=640;
- } 
+  enemy_x%=640; 
+  if(hp_x==0){
+  gamestate=2;}
+  break;
+   case 2:
+  background(0);
+  image(end1Img,0,0);
+  if(mouseY>300 && mouseY<350){
+    if(mouseX>200 && mouseX<445){
+   background(0);
+  image(end2Img,0,0);
+   if(mousePressed){
+  gamestate=0;
+  }
+  }
+  else{
+    background(0);
+  image(end1Img,0,0);
+  }  
+  }
+ 
+  break;
+  
+  
+  }
+  
+ }
+   
+  
+ 
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+ 
  void keyPressed(){
  if(key== CODED){
   switch(keyCode){
@@ -153,6 +222,7 @@ void draw() {
     } 
    }
   } 
+   
  
  void keyReleased(){
  if(key== CODED){
@@ -172,6 +242,11 @@ void draw() {
     } 
    }
   }
+ 
+ 
+ 
+ 
+ 
  
  
  
