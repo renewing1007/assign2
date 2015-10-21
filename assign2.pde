@@ -178,7 +178,7 @@ void draw() {
   image(treasureImg,treasure_x,treasure_y);
   //enemy
   image(enemyImg,enemy_x,enemy_y);
-  enemy_x+=2;
+  enemy_x+=3;
   enemy_x%=640; 
   
   if(hp_x==0){
