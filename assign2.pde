@@ -149,10 +149,27 @@ void draw() {
    if(enemy_x-49 <= fighterx1 && fighterx1 <= enemy_x+40 ){
      if(enemy_y-49 <= fightery1 && fightery1 <= enemy_y+60){
      hp_x-=38;
+     if(hp_x<=0){
+     hp_x=0;
+     }
      enemy_x=0;
      enemy_y=floor(random(35,420));
    } 
    }
+   
+    //more fun
+    
+  if(fightery1>enemy_y){
+  enemy_y+=2;}
+  if(fightery1<enemy_y)
+  {enemy_y-=2;}
+  
+  if(fightery1==enemy_y){
+  fightery1=enemy_y;
+  enemy_x+=3;
+  }
+  
+   
   //hp
   fill(#FF0000);
   rect(13,5,hp_x,15);
@@ -161,8 +178,9 @@ void draw() {
   image(treasureImg,treasure_x,treasure_y);
   //enemy
   image(enemyImg,enemy_x,enemy_y);
-  enemy_x+=1;
+  enemy_x+=2;
   enemy_x%=640; 
+  
   if(hp_x==0){
   gamestate=2;}
   break;
@@ -242,11 +260,6 @@ void draw() {
     } 
    }
   }
- 
- 
- 
- 
- 
  
  
  
