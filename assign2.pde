@@ -1,4 +1,4 @@
-                            /* please implement your assign1 code in this file. */
+                         /* please implement your assign1 code in this file. */
   PImage fighterImg;
   PImage treasureImg;
   PImage hpImg;
@@ -46,7 +46,7 @@ void setup () {
 
  hp_x=38;
  enemy_x=0;
- enemy_y=floor(random(35,420));
+ enemy_y=100;
  //enemy_x=220;
  //enemy_y=100;
  
@@ -65,13 +65,13 @@ void draw() {
   // your code
   switch(gamestate){
   case GAME_START:
-  hp_x=38;
+  
   background(0);
-  image(start1Img,0,0);
+  image(start2Img,0,0);
   if(mouseY>375 && mouseY<420){
     if(mouseX>200 && mouseX<450){
     background(0);
-  image(start2Img,0,0);
+  image(start1Img,0,0);
   if(mousePressed){
   gamestate=1;
   }
@@ -192,7 +192,12 @@ void draw() {
    background(0);
   image(end2Img,0,0);
    if(mousePressed){
-  gamestate=0;
+  hp_x=38;
+   fighterx1=width-50;
+ fightery1=height/2;
+  enemy_x=0;
+  enemy_y=100;
+     gamestate=1;
   }
   }
   else{
